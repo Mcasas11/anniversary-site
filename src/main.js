@@ -6,9 +6,18 @@ const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
+    } else {
+      entry.target.classList.remove('visible'); // opcional
     }
   });
-}, { threshold: 0.3 });
+}, {
+  threshold: 0.1
+});
+
+// 👇 FORZAR PRIMER ELEMENTO
+if (elements.length > 0) {
+  elements[0].classList.add('visible');
+}
 
 elements.forEach(el => observer.observe(el));
 
@@ -23,3 +32,4 @@ window.addEventListener('scroll', () => {
     image.style.transform = `scale(${scale})`;
   }
 });
+
